@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz form</title>
+</head>
+
+<body>
+<form method="POST" th:action="@{/quizzes}" th:object="${quiz}">
+    <h2>Enter Quiz</h2>
+
+    <label for="id">Quiz id: </label>
+    <input type="text" th:field="*{id}"/>
+    <br/>
+
+    <label for="question">Quiz question: </label>
+    <input type="text" th:field="*{question}"/>
+    <br/>
+
+    <label for="options">Quiz options: </label>
+    <input type="text" th:field="*{options}"/>
+    <br/>
+
+    <label for="answer">Quiz answer: </label>
+    <input type="text" th:field="*{answer}"/>
+    <br/><br/>
+
+    <input type="submit" value="Submit the quiz"/>
+
+</form>
+</body>
+
+</html>

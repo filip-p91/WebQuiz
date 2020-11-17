@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebQuiz Application</title>
+</head>
+<body>
+<h2>Quizzes:</h2>
+
+<div th:each="quiz : ${quizzes}">
+    <label for="Quiz id">Quiz title: </label>
+    <span th:text="${quiz.id}">Quiz</span><br/>
+    <label for="Quiz question">Quiz question: </label>
+    <span th:text="${quiz.question}">Quiz</span><br/><br/>
+    <label for="Quiz options">Quiz question: </label>
+    <span th:text="${quiz.options}">Quiz</span><br/><br/>
+</div>
+</body>
+</html>
