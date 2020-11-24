@@ -1,10 +1,13 @@
-/*package com.webQuiz.demo.repositories;
+package com.webQuiz.demo.repositories;
 
 import com.webQuiz.demo.models.Quiz;
-import org.springframework.data.repository.CrudRepository;
+import com.webQuiz.demo.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface QuizRepository extends CrudRepository<Quiz, Long> {
+import java.util.List;
 
-}*/
+@Repository
+public interface QuizRepository extends JpaRepository<Quiz, Long> {
+    List<Quiz> findByAuthor(User user);
+}

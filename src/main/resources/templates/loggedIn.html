@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebQuiz Application</title>
+</head>
+<body>
+<h1>Welcome to WebQuiz Application</h1>
+
+<p>Please select an option</p>
+<ol>
+    <li><a href="quizForm.html" th:href="@{/quiz/form}">Add quiz</a></li>
+    <li><a href="deleteQuiz.html" th:href="@{/quiz/delete}">Delete quiz</a></li>
+    <li><a href="userQuizzes.html" th:href="@{/user/quizzes}">List of user quizzes</a></li>
+
+</ol>
+
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Log out"/>
+</form>
+</body>
+</html>

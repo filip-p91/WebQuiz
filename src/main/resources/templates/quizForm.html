@@ -6,24 +6,58 @@
 </head>
 
 <body>
-<form method="POST" th:action="@{/quizzes}" th:object="${quiz}">
-    <h2>Enter Quiz</h2>
+<p><a href="loggedIn.html" th:href="@{/loggedIn}">Previous page</a></p>
+<form method="POST" th:action="@{/quiz/form}" th:object="${quiz}">
+    <h1>Enter Quiz</h1>
 
-    <label for="id">Quiz id: </label>
-    <input type="text" th:field="*{id}"/>
-    <br/>
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Delete the problems listed below and try again.
+        </span>
+    </div>
 
     <label for="question">Quiz question: </label>
     <input type="text" th:field="*{question}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('question')}"
+          th:errors="*{question}"></span>
     <br/>
 
-    <label for="options">Quiz options: </label>
-    <input type="text" th:field="*{options}"/>
+    <label for="option1">Enter first possible answer: </label>
+    <input type="text" th:field="*{option1}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('option1')}"
+          th:errors="*{option1}"></span>
     <br/>
 
-    <label for="answer">Quiz answer: </label>
+    <label for="option2">Enter second possible answer: </label>
+    <input type="text" th:field="*{option2}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('option2')}"
+          th:errors="*{option2}"></span>
+    <br/>
+
+    <label for="option3">Enter third possible answer: </label>
+    <input type="text" th:field="*{option3}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('option3')}"
+          th:errors="*{option3}"></span>
+    <br/>
+
+    <label for="option4">Enter fourth possible answer: </label>
+    <input type="text" th:field="*{option4}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('option4')}"
+          th:errors="*{option4}"></span>
+    <br/>
+
+    <label for="answer">Correct answer number: </label>
     <input type="text" th:field="*{answer}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('answer')}"
+          th:errors="*{answer}"></span>
     <br/><br/>
+
 
     <input type="submit" value="Submit the quiz"/>
 

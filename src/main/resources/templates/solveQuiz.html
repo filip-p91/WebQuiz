@@ -2,18 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>List of Quizzes</title>
+    <title>Solve Quiz</title>
 </head>
 <body>
 <p><a href="home.html" th:href="@{/}">Back to home page</a></p>
+<form method="POST" th:action="@{/solve/{id}(id = ${quiz.id})}">
 
-<h1>Quizzes:</h1>
-<div th:unless="${#lists.isEmpty(quizzes)}">
-<div th:each="quiz : ${quizzes}">
-    <label for="Quiz id">Quiz id: </label>
-    <span th:text="${quiz.id}"></span><br/>
+<h1>Solve Quiz:</h1>
+
+<div th:object="${quiz}">
     <label for="Quiz question">Quiz question: </label>
-    <span th:text="${quiz.question}"></span><br/>
+    <span th:text="${quiz.question}"></span><br/><br/>
     <label for="Quiz options">Quiz options: </label><br/>
     <label for="Quiz question">1) </label>
     <span th:text="${quiz.option1}"></span><br/>
@@ -22,12 +21,19 @@
     <label for="Quiz question">3) </label>
     <span th:text="${quiz.option3}"></span><br/>
     <label for="Quiz question">4) </label>
-    <span th:text="${quiz.option4}"></span><br/>
+    <span th:text="${quiz.option4}"></span><br/><br/>
+
+    <label for="id">Select answer: </label>
+    <select id="answer" name="answer">
+        <option th:value="1" th:text="1"></option>
+        <option th:value="2" th:text="2"></option>
+        <option th:value="3" th:text="3"></option>
+        <option th:value="4" th:text="4"></option>
+    </select>
+
+    <input type="submit" value="Answer the quiz"/>
 
     <br/><br/>
-</div></div>
-<div th:if="${#lists.isEmpty(quizzes)}">
-    <div>No Quizzes were found. Please create some first.</div>
 </div>
 </body>
 </html>

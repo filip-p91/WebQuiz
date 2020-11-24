@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebQuiz Application</title>
+</head>
+<body>
+<p><a href="home.html" th:href="@{/}">Back to home page</a></p>
+<h1>Login</h1>
+
+<p>New user? Click
+    <a href="userRegistration.html" th:href="@{/user/register}">here</a> to register</p>
+<br/>
+<!-- tag::thAction[] -->
+<form method="POST" th:action="@{/login}" id="loginForm">
+    <!--end::thAction[] -->
+    <label for="username">Username: </label>
+    <input type="text" name="username"/>
+    <br/>
+
+    <label for="password">User password: </label>
+    <input type="password" name="password"/>
+    <br/>
+
+    <input type="submit" value="Log in">
+    <br/><br/>
+    <div th:if="${param.error}">
+        Check username or password.
+    </div>
+</form>
+</body>
+</html>

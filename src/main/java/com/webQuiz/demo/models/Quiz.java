@@ -1,13 +1,9 @@
 package com.webQuiz.demo.models;
 
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Quiz {
@@ -15,49 +11,99 @@ public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotBlank
+    @NotBlank(message = "Enter question")
     private String question;
-    @Size(min = 2)
-    @NotNull
-    private String[] options;
-    private int answer;
+    @NotBlank(message = "Field cannot be empty.")
+    private String optionOne;
+    @NotBlank(message = "Field cannot be empty.")
+    private String optionTwo;
+    @NotBlank(message = "Field cannot be empty.")
+    private String optionThree;
+    @NotBlank(message = "Field cannot be empty.")
+    private String optionFour;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Pattern(regexp = "[1-4]", message = "Enter correct option number (1-4).")
+    private String answer;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    User author;
 
-    public Quiz(int id, String question, String[] options, int answer) {
+    public Quiz(long id, String question, String optionOne, String optionTwo, String optionThree, String optionFour, String answer) {
         this.id = id;
         this.question = question;
-        this.options = options;
+        this.optionOne = optionOne;
+        this.optionTwo = optionTwo;
+        this.optionThree = optionThree;
+        this.optionFour = optionFour;
         this.answer = answer;
     }
 
     public Quiz() {
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public void setOptions(String[] options) {
-        this.options = options;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
-    }
-
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public String[] getOptions() {
-        return options;
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getOptionOne() {
+        return optionOne;
+    }
+
+    public void setOptionOne(String optionOne) {
+        this.optionOne = optionOne;
+    }
+
+    public String getOptionTwo() {
+        return optionTwo;
+    }
+
+    public void setOptionTwo(String optionTwo) {
+        this.optionTwo = optionTwo;
+    }
+
+    public String getOptionThree() {
+        return optionThree;
+    }
+
+    public void setOptionThree(String optionThree) {
+        this.optionThree = optionThree;
+    }
+
+    public String getOptionFour() {
+        return optionFour;
+    }
+
+    public void setOptionFour(String optionFour) {
+        this.optionFour = optionFour;
+    }
+
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
 }

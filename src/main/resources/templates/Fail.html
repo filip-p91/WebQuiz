@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebQuiz Application</title>
+</head>
+<body>
+<p><a href="home.html" th:href="@{/}">Back to home page</a></p>
+<h1>You are wrong!</h1>
+<p><a href="solveQuiz.html" th:href="@{/solve/{id}(id = ${quiz.id})}">Try again</a></p>
+
+</body>
+</html>

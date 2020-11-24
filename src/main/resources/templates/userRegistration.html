@@ -6,18 +6,35 @@
 </head>
 
 <body>
-<form method="POST" th:action="@{/}" th:object="${user}">
-    <h2>Enter Quiz</h2>
+<p><a href="home.html" th:href="@{/}">Back to home page</a></p>
 
-    <label for="email">User email: </label>
-    <input type="text" th:field="*{email}"/>
+<form method="POST" th:action="@{/user/register}" th:object="${user}">
+    <h1>Register User</h1>
+
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Delete the problems listed below and try again.
+        </span>
+    </div>
+
+    <label for="username">Username: </label>
+    <input type="text" th:field="*{username}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"></span>
     <br/>
 
     <label for="password">User password: </label>
-    <input type="text" th:field="*{password}"/>
+    <input type="password" th:field="*{password}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}"></span>
     <br/>
 
     <input type="submit" value="Register user"/>
+
+    <div th:if="${usernameTaken != null}">
+        <p>Username '<span th:text="${takenUsername}"></span>' is already taken.</p></div>
 
 </form>
 </body>
